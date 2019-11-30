@@ -43,6 +43,11 @@ declare module SDK {
 		// Opens auth popup.
 		// To prevent the browser from blocking this popup, only call miro.authorize from a click handler on your domain.
 		// Method returns a token you can use to make requests REST API on behalf of the current user.
+		//
+		// In order for this Promise to resolve you have to call "miroAuthorized()" in the same iframe once the authentication
+		// process is completed. `miroAuthorized()` method will be created in your iframe once you call authorize. 
+		// Until you call miroAuthorized() your plugin will not be recognized as authrorized on given board.
+		// Please see sample of how this works in `implicit-flow-example`
 		authorize(options: AuthorizationOptions): Promise<string>
 
 		// You can save some state shared between all iframes.
